@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Books</string>
+    <string name="search_word">Keyword</string>
+    <string name="button_word">SEARCH</string>
+    <string name="empty_field_message">Enter keyword please</string>
+    <string name="book_title">Purple Hibiscus</string>\
+    <string name="book_author">Chimamanda Ngozi Adichie</string>
+    <string name="book_description">The book is about a young girl called Kambili whose father was a religious fanatic. The story captures the physical and emotional sufferings the family went through at the hands of their father.</string>
+</resources>
