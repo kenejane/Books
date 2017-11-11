@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                   Books currentBook = adapter.getItem(position);
 
                     // Convert the String URL into a URI object (to pass into the Intent constructor)
-                    Uri earthquakeUri = Uri.parse(currentBook.getUrl());
+                    Uri booksUri = Uri.parse(currentBook.getUrl());
 
                     // Create a new intent to view the earthquake URI
-                   Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+                   Intent websiteIntent = new Intent(Intent.ACTION_VIEW, booksUri);
 
                     // Send the intent to launch a new activity
                     startActivity(websiteIntent);
