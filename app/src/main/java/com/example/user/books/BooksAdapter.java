@@ -7,20 +7,28 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
+import static android.R.attr.resource;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+
 /**
  * Created by USER on 11/9/2017.
  */
 
 public class BooksAdapter extends ArrayAdapter<Books>{
 
-    public BooksAdapter(Context context, int resource) {
-        super(context, resource);
+    public BooksAdapter(Context context, List<Books> books) {
+        super(context,0,books);
     }
+
+
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
         Books book = getItem(position);
+
 
         if (view == null){
             view = LayoutInflater.from(getContext()).inflate(
@@ -33,6 +41,7 @@ public class BooksAdapter extends ArrayAdapter<Books>{
         title.setText(book.getTitle());
         author.setText(book.getAuthor());
         description.setText(book.getDescription());
+
 
         return view;
     }
