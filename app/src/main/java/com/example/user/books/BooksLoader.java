@@ -43,6 +43,7 @@ public class BooksLoader extends AsyncTaskLoader<List<Books>> {
     public List<Books> loadInBackground() {
         if (mUrl == null) {
             return null;
+
         }
 
         // Perform the network request, parse the response, and extract a list of earthquakes.

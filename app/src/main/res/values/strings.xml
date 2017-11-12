@@ -7,5 +7,6 @@
     <string name="book_author">Chimamanda Ngozi Adichie</string>
     <string name="book_description">The book is about a young girl called Kambili whose father was a religious fanatic. The story captures the physical and emotional sufferings the family went through at the hands of their father.</string>
     <string name="error_message">Cannot connect to the internet pleasew check your connection</string>
+
 </resources>
 
