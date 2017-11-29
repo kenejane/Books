@@ -2,8 +2,11 @@ package com.example.user.books;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.widget.EditText;
 
 import java.util.List;
+
+
 
 /**
  * Created by USER on 11/10/2017.
@@ -14,6 +17,7 @@ public class BooksLoader extends AsyncTaskLoader<List<Books>> {
      * Tag for log messages
      */
     private static final String LOG_TAG = BooksLoader.class.getName();
+    EditText editText;
 
     /**
      * Query URL
@@ -46,7 +50,7 @@ public class BooksLoader extends AsyncTaskLoader<List<Books>> {
 
         }
 
-        // Perform the network request, parse the response, and extract a list of earthquakes.
+        // Perform the network request, parse the response, and extract a list of books.
         List<Books> books = QueryUtils.fetchBooksData(mUrl);
         return books;
     }

@@ -9,19 +9,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static android.R.attr.resource;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-
 /**
  * Created by USER on 11/9/2017.
  */
 
-public class BooksAdapter extends ArrayAdapter<Books>{
+public class BooksAdapter extends ArrayAdapter<Books> {
 
     public BooksAdapter(Context context, List<Books> books) {
-        super(context,0,books);
+        super(context, 0, books);
     }
-
 
 
     @Override
@@ -30,7 +26,7 @@ public class BooksAdapter extends ArrayAdapter<Books>{
         Books book = getItem(position);
 
 
-        if (view == null){
+        if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(
                     R.layout.books_list_view, parent, false);
         }

@@ -1,5 +1,6 @@
 package com.example.user.books;
 
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -17,8 +18,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Long.getLong;
 
 /**
  * Created by USER on 11/9/2017.
@@ -99,7 +98,7 @@ public class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the books JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -160,16 +159,16 @@ public class QueryUtils {
             // which represents a list of features (or earthquakes).
             JSONArray booksArray = baseJsonResponse.getJSONArray("items");
 
-            for (int i = 0; i < booksArray.length();i++){
+            for (int i = 0; i < booksArray.length(); i++) {
                 JSONObject currentBook = booksArray.getJSONObject(i);
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
 
-                String title  = volumeInfo.getString("title");
-                String author = volumeInfo.getString("author");
+                String title = volumeInfo.getString("title");
+                String author = volumeInfo.getString("authors");
                 String description = volumeInfo.getString("description");
                 String url = volumeInfo.getString("url");
 
-                Books book = new Books(title, author, description,url);
+                Books book = new Books(title, author, description, url);
                 books.add(book);
             }
 
