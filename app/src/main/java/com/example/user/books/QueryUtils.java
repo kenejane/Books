@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class QueryUtils {
     /**
      * Query the USGS dataset and return a list of {@link Books} objects.
      */
-    public static List<Books> fetchBooksData(String requestUrl) {
+    public static List<Books> fetchBooksData(Uri requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
 

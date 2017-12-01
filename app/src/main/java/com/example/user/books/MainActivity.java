@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
      * URL for books from google books API
      */
     private static final String GOOGLEBOOKS_REQUEST_URL =
-            "https://www.googleapis.com/books/v1/volumes?q";
+            "https://www.googleapis.com/books/v1/volumes?q=books";
 
 
     private static final String LOG_TAG = MainActivity.class.getName();
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
                     if (networkInfo != null && networkInfo.isConnected()) {
-                        BooksLoader booksLoader = new BooksLoader(getApplicationContext(), GOOGLEBOOKS_REQUEST_URL);
+                        BooksLoader booksLoader = new BooksLoader(getApplicationContext(),baseUri );
                         booksLoader.onStartLoading();
                         textView.setVisibility(View.GONE);
                     } else {
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public Loader<List<Books>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new BooksLoader(this, GOOGLEBOOKS_REQUEST_URL);
+        return new BooksLoader(this, Uri.parse(GOOGLEBOOKS_REQUEST_URL));
     }
 
     @Override
