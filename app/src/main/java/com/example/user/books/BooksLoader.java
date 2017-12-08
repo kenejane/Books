@@ -24,7 +24,7 @@ public class BooksLoader extends AsyncTaskLoader<List<Books>> {
     /**
      * Query URL
      */
-    private Uri mUrl;
+    private String mUrl;
 
     /**
      * Constructs a new {@link BooksLoader}.
@@ -32,7 +32,7 @@ public class BooksLoader extends AsyncTaskLoader<List<Books>> {
      * @param context of the activity
      * @param url     to load data from
      */
-    public BooksLoader(Context context, Uri url) {
+    public BooksLoader(Context context, String url) {
         super(context);
         mUrl = url;
     }

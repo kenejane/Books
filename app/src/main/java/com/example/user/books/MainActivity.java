@@ -20,12 +20,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<Books>> {
     /**
      * URL for books from google books API
      */
     private static final String GOOGLEBOOKS_REQUEST_URL =
-            "https://www.googleapis.com/books/v1/volumes?q=books";
+            "https://www.googleapis.com/books/v1/volumes?";
 
 
     private static final String LOG_TAG = MainActivity.class.getName();
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     String search;
     EditText editText;
     TextView textView;
+    Uri baseUri=Uri.parse("");
 
 
     @Override
@@ -59,15 +62,16 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                 @Override
                 public void onClick(View view) {
                     search = editText.getText().toString();
-                    Uri baseUri=Uri.parse(GOOGLEBOOKS_REQUEST_URL);
-                     baseUri.buildUpon()
-                     .appendQueryParameter("q",search)
-                            .build();
+                    search = search.replace("","+");
+                    Uri baseUri = Uri.parse(GOOGLEBOOKS_REQUEST_URL);
+                    Uri.Builder uriBuilder = baseUri.buildUpon();
+                            uriBuilder.appendQueryParameter("q", search);
+                            uriBuilder.build();
+                            uriBuilder.toString();
 
 
                     if (networkInfo != null && networkInfo.isConnected()) {
-                        BooksLoader booksLoader = new BooksLoader(getApplicationContext(),baseUri );
-                        booksLoader.onStartLoading();
+                        startLoader();
                         textView.setVisibility(View.GONE);
                     } else {
                         textView.setText(R.string.error_message);
@@ -107,7 +111,11 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                 startActivity(websiteIntent);
             }
         });
+    }
 
+
+        private void startLoader(){
+        adapter.clear();
 
         //Get a reference to the L\oaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();
@@ -115,13 +123,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         // Initialize the loader. Pass in the int ID constant defined above and pass in null for
         // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
         // because this activity implements the LoaderCallbacks interface).
-        loaderManager.initLoader(BOOKS_LOADER_ID, null, this);
+        loaderManager.restartLoader(BOOKS_LOADER_ID, null, this);
     }
 
     @Override
     public Loader<List<Books>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new BooksLoader(this, Uri.parse(GOOGLEBOOKS_REQUEST_URL));
+        return new BooksLoader(this, baseUri.toString());
     }
 
     @Override
